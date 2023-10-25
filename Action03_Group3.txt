@@ -1,0 +1,44 @@
+SystemUtil.Run "C:\Program Files (x86)\Micro Focus\UFT One\samples\Flights Application\FlightsGUI.exe"
+ ' Define the path to save screenshots
+screenshotPath = "D:\Screenshots\UFT_Group3\Action3\"
+' Capture a screenshot before filling out the form'
+WpfWindow("Micro Focus MyFlight Sample").CaptureBitmap screenshotPath & "BeforeFillingForm_LoginPage.bmp", True
+'Set agent name using data from DataTable'
+WpfWindow("Micro Focus MyFlight Sample").WpfEdit("agentName").Set DataTable("Username", dtLocalSheet)
+'Verify the OK Button Checkpoint'
+WpfWindow("Micro Focus MyFlight Sample").WpfButton("OK").Check CheckPoint("OK")
+'Set encrypted password'
+WpfWindow("Micro Focus MyFlight Sample").WpfEdit("password").SetSecure "6525b0d044b9b78c4912"
+' Capture a screenshot after filling out the form'
+WpfWindow("Micro Focus MyFlight Sample").CaptureBitmap screenshotPath & "AfterFillingForm_LoginPage.bmp", True
+'Click OK for login'
+WpfWindow("Micro Focus MyFlight Sample").WpfButton("OK").Click
+' Capture a screenshot before filling out the form'
+WpfWindow("Micro Focus MyFlight Sample").CaptureBitmap screenshotPath & "BeforeFillingForm_BookingDetails.bmp", True
+'Select "From" and "To" cities using data from DataTable'
+WpfWindow("Micro Focus MyFlight Sample").WpfComboBox("fromCity").Select DataTable("From City", dtLocalSheet)
+WpfWindow("Micro Focus MyFlight Sample").WpfComboBox("toCity").Select DataTable("To City", dtLocalSheet)
+'Set flight date'
+WpfWindow("Micro Focus MyFlight Sample").WpfCalendar("datePicker").SetDate DataTable("Date", dtLocalSheet)
+'Set Class for booking using data from DataTable'
+WpfWindow("Micro Focus MyFlight Sample").WpfComboBox("Class").Select DataTable("Class", dtLocalSheet)
+'Select random number of tickets'
+WpfWindow("Micro Focus MyFlight Sample").WpfComboBox("numOfTickets").Select RandomNumber("Tickets")
+' Capture a screenshot after filling out the form'
+WpfWindow("Micro Focus MyFlight Sample").CaptureBitmap screenshotPath & "AfterFillingForm_BookingDetails.bmp", True
+'Click to find and select flight'
+WpfWindow("Micro Focus MyFlight Sample").WpfButton("FIND FLIGHTS").Click
+WpfWindow("Micro Focus MyFlight Sample").WpfTable("flightsDataGrid").SelectCell 0,1
+WpfWindow("Micro Focus MyFlight Sample").WpfButton("SELECT FLIGHT").Click
+' Capture a screenshot before filling out the Order form'
+WpfWindow("Micro Focus MyFlight Sample").CaptureBitmap screenshotPath & "BeforeFillingForm_OrderPage.bmp", True
+'Set passenger name and order'
+WpfWindow("Micro Focus MyFlight Sample").WpfEdit("passengerName").Set DataTable("Passenger Name", dtLocalSheet)
+WpfWindow("Micro Focus MyFlight Sample").WpfButton("ORDER").Click
+' Capture a screenshot after filling out the Order form'
+WpfWindow("Micro Focus MyFlight Sample").CaptureBitmap screenshotPath & "AfterFillingForm_OrderPage.bmp", True
+'Close application'
+WpfWindow("Micro Focus MyFlight Sample").Close
+Wait (10)
+
+
