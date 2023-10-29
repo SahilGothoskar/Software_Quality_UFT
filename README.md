@@ -9,4 +9,6 @@
 ![image](https://github.com/SahilGothoskar/Software_Quality_UFT/assets/33109078/b11bdbb9-bb95-4692-ad3d-9eed4953c511)
 
 
-- Sahil Gothoskar
+
+Made by 
+Sahil Gothoskar
